@@ -20,7 +20,7 @@ describe('-1+-1', function () {
         vars = {};
     });
 
-afterEach(async function () {
+    afterEach(async function () {
         if (driver) {
             // Take a screenshot of the result page
             const filename = this.currentTest.fullTitle()
