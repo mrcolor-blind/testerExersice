@@ -22,12 +22,15 @@ describe('-1+-1', function () {
 
     afterEach(async function () {
         if (driver) {
+            // Take a screenshot of the result page
             const filename = this.currentTest.fullTitle()
                 .replace(/['"]+/g, '')
                 .replace(/[^a-z0-9]/gi, '_')
-                .toLowerCase();
+                .toLowerCase();;
             const encodedString = await driver.takeScreenshot();
-            await fs.writeFileSync(`./screenshots/${filename}.png`, encodedString, 'base64');
+            await fs.writeFileSync(`./screenshots/${filename}.png`,
+                encodedString, 'base64');
+            // Close the browser
             await driver.quit();
         }
     });
