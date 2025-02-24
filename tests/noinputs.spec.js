@@ -39,6 +39,5 @@ describe('-1+-1', function () {
     await driver.get("http://localhost:8000/")
     await driver.manage().window().setRect({ width: 808, height: 719 })
     await driver.findElement(By.css("button:nth-child(1)")).click()
-    await driver.close()
   })
 })
