@@ -8,28 +8,28 @@ describe('test1', function() {
   let driver
   let vars
   if (!fs.existsSync('./screenshots')) {
-        fs.mkdirSync('./screenshots');
-    }
+    fs.mkdirSync('./screenshots');
+  }
   beforeEach(async function() {
     const chrome = require('selenium-webdriver/chrome');
-        const options = new chrome.Options();
-        options.addArguments('--headless', '--no-sandbox', '--disable-dev-shm-usage');
-        driver = await new Builder().forBrowser('chrome').setChromeOptions(options).build();
+    const options = new chrome.Options();
+    options.addArguments('--headless', '--no-sandbox', '--disable-dev-shm-usage');
+    driver = await new Builder().forBrowser('chrome').setChromeOptions(options).build();
     vars = {}
   })
   afterEach(async function () {
-        if (driver) {
-            // Take a screenshot of the result page
-            const filename = this.currentTest.fullTitle()
-                .replace(/['"]+/g, '')
-                .replace(/[^a-z0-9]/gi, '_')
-                .toLowerCase();;
-            const encodedString = await driver.takeScreenshot();
-            await fs.writeFileSync(`./screenshots/${filename}.png`,
-                encodedString, 'base64');
-            // Close the browser
-            await driver.quit();
-        }
+    if (driver) {
+      // Take a screenshot of the result page
+      const filename = this.currentTest.fullTitle()
+        .replace(/['"]+/g, '')
+        .replace(/[^a-z0-9]/gi, '_')
+        .toLowerCase();;
+      const encodedString = await driver.takeScreenshot();
+      await fs.writeFileSync(`./screenshots/${filename}.png`,
+        encodedString, 'base64');
+      // Close the browser
+      await driver.quit();
+    }
   });
   it('0 plus 0', async function() {
     await driver.get("http://localhost:8000/")
