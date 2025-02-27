@@ -35,13 +35,13 @@ describe('-1+-1', function () {
         }
     });
 
-  it('sub2Negatives', async function() {
+  it('subFirstEmpty', async function() {
     await driver.get("http://localhost:8000/")
-    await driver.manage().window().setRect({ width: 808, height: 720 })
-    await driver.findElement(By.id("num1")).click()
-    await driver.findElement(By.id("num1")).sendKeys("-14")
+    await driver.manage().window().setRect({ width: 808, height: 721 })
     await driver.findElement(By.id("num2")).click()
-    await driver.findElement(By.id("num2")).sendKeys("-2")
+    await driver.findElement(By.id("num2")).sendKeys("4")
+    await driver.findElement(By.css("button:nth-child(1)")).click()
     await driver.findElement(By.css("button:nth-child(2)")).click()
+    await driver.findElement(By.css("button:nth-child(3)")).click()
   })
 })
