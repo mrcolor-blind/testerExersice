@@ -1,8 +1,9 @@
 name: Run tests
 
 on:
-  workflow_dispatch:
-  
+  pull_request:
+    branches:
+      - main  # Change this to the branch you want to trigger on
 jobs:
   test:
     name: Test
