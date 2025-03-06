@@ -15,8 +15,9 @@ public class CalculatorController {
         return new Calculator(num1 + num2);
     }
 
+    @GetMapping("/sub")
     public Calculator subNums(@RequestParam(value = "num1", defaultValue = "0") Long num1,@RequestParam(value = "num2", defaultValue = "0") Long num2){
-        return new Calculator(num1 + num2);
+        return new Calculator(num1 - num2);
     }
 
 }
