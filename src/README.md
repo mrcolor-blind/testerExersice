@@ -1,2 +1,0 @@
-# testerExersice
-School Tester Exersice
