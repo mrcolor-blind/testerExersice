@@ -1,19 +1,40 @@
-function calculate() {
+async function calculate() {
     const num1 = document.getElementById("num1").value;
     const num2 = document.getElementById("num2").value;
 
-    let result = Number(num1) + Number(num2);
+    const url = `http://localhost:8080/add?num1=${num1}&num2=${num2}`;
 
-    document.getElementById("result").innerText = "Result: " + result;
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+        }
+        const res = await response.json();
+        document.getElementById("result").innerText = "Result: " + res.result;
+
+    } catch (error) {
+        console.error(error.message);
+    }
+
 }
 
-function subs() {
+async function subs() {
     const num1 = document.getElementById("num1").value;
     const num2 = document.getElementById("num2").value;
 
-    let result = Number(num1) - Number(num2);
+    const url = `http://localhost:8080/sub?num1=${num1}&num2=${num2}`;
 
-    document.getElementById("result").innerText = "Result: " + result;
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+        }
+        const res = await response.json();
+        document.getElementById("result").innerText = "Result: " + res.result;
+
+    } catch (error) {
+        console.error(error.message);
+    }
 }
 
 function resetFields(){
