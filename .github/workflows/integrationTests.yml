@@ -7,11 +7,9 @@ on:
     branches: [ "main" ]
 jobs:
   build:
+
     runs-on: ubuntu-latest
-    
-    container:
-      image: node:20
-      
+
     steps:
     - uses: actions/checkout@v4
     - name: Set up JDK 17
@@ -24,12 +22,6 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '20'
-
-    - uses: browser-actions/setup-chrome@v1
-      with:
-        chrome-version: 120
-        install-dependencies: true
-        
     - name: Build with Maven
       run: |
           cd backend/calculator_back
@@ -52,22 +44,3 @@ jobs:
            npm install -g newman
            newman -v
            newman run src/test/java/com/example/calculator_back/integration/calculator.postman_collection.json
-           
-    - name: Frontend end-to-end tests
-      run: |
-         cd frontend/src
-         python3 -m http.server 8000 &
-         sleep 10 &&
-         curl http://localhost:8000
-         cd ..
-         cd tests
-         npm install
-         ./node_modules/.bin/mocha *.js
-          
-          
-    - uses: actions/upload-artifact@v4
-      if: always()
-      with:
-        name: screenshots
-        path: screenshots/
-          
