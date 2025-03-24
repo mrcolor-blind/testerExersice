@@ -52,8 +52,7 @@ jobs:
              npm install -g newman
              newman -v
              newman run src/test/java/com/example/calculator_back/integration/calculator.postman_collection.json
-             cd ..
-             cd ..
+      - run: |
              cd frontend/src
              python3 -m http.server 8000 &
              sleep 10 &&
