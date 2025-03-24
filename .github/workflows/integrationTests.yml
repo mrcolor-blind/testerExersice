@@ -42,6 +42,7 @@ jobs:
             npm install
             ./node_modules/.bin/mocha *.js
             cd ..
+            cd ..
             cd backend/calculator_back
              mvn clean spring-boot:run & 
              echo "waiting 5 seconds for the server to start"
