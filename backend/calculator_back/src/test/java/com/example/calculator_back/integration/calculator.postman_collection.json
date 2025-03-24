@@ -8,17 +8,136 @@
 	"item": [
 		{
 			"name": "caculatorAdd",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response has the required fields\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData).to.be.an('object');\r",
+							"    pm.expect(responseData.result).to.exist;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Result is a number\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData.result).to.be.a('number');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Received result is the correct number representing the addition of the two parameters\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    const num1 = pm.request.url.query.get('num1');\r",
+							"    const num2 = pm.request.url.query.get('num2');\r",
+							"    \r",
+							"    pm.expect(responseData.result).to.equal(Number(num1) + Number(num2));\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/add?num1=7&num2=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"add"
+					],
+					"query": [
+						{
+							"key": "num1",
+							"value": "7"
+						},
+						{
+							"key": "num2",
+							"value": "2"
+						}
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "caculatorSub",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"  pm.expect(pm.response.code).to.equal(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response has the required field - result\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData).to.be.an('object');\r",
+							"    pm.expect(responseData.result).to.exist;\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Result is a valid number\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData.result).to.be.a('number');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Result is the correct number representing the subtraction between num1 and num2\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    const num1 = pm.request.url.query.get('num1');\r",
+							"    const num2 = pm.request.url.query.get('num2');\r",
+							"    \r",
+							"    pm.expect(responseData.result).to.equal(Number(num1) - Number(num2));\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/sub?num1=7&num2=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"sub"
+					],
+					"query": [
+						{
+							"key": "num1",
+							"value": "7"
+						},
+						{
+							"key": "num2",
+							"value": "2"
+						}
+					]
+				}
 			},
 			"response": []
 		}
