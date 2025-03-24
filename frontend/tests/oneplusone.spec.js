@@ -49,7 +49,7 @@ describe('-1+-1', function () {
 
     let resultText = await driver.findElement(By.id("result")).getText();
 
-    let resultValue = parseInt(resultText.replace('Result:', '').trim());
+    let resultValue = parseFloat(resultText.replace('Result:', '').trim());
 
     assert.strictEqual(resultValue, 2, "Result is not 2");
   })
