@@ -33,7 +33,7 @@ jobs:
           install-dependencies: true
       - run: |
              cd backend/calculator_back
-             mvn clean spring-boot:run & 
+             ./mvnw clean spring-boot:run & 
              echo "waiting 5 seconds for the server to start"
              sleep 5 
              attempt_counter=0
