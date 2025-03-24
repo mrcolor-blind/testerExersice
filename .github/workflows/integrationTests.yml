@@ -32,7 +32,7 @@ jobs:
           install-dependencies: true
           
       - name: Build with Maven
-      - run: |
+        run: |
              cd backend/calculator_back
              ./mvnw clean spring-boot:run & 
              echo "waiting 5 seconds for the server to start"
@@ -55,7 +55,7 @@ jobs:
              newman run src/test/java/com/example/calculator_back/integration/calculator.postman_collection.json
              
       - name: Frontend end-to-end tests
-      - run: |
+        run: |
              cd frontend/src
              python3 -m http.server 8000 &
              sleep 10 &&
