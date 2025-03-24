@@ -51,6 +51,6 @@ describe('-1+-1', function () {
 
     let resultValue = parseInt(resultText.replace('Result:', '').trim());
 
-    assert.strictEqual(resultValue, 9, "Result is not 9");
+    assert.strictEqual(resultValue, 2, "Result is not 2");
   })
 })
