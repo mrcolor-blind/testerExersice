@@ -1,9 +1,11 @@
 name: Run tests
 
 on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
   pull_request:
-    branches:
-      - main  # Change this to the branch you want to trigger on
+    branches: [ "main" ]
 jobs:
   test:
     name: Test
