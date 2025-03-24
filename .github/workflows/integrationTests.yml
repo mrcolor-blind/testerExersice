@@ -27,10 +27,6 @@ jobs:
         with:
           node-version: '20'
       - name: Build with Maven
-      - uses: browser-actions/setup-chrome@v1
-        with:
-          chrome-version: 120
-          install-dependencies: true
       - run: |
              cd backend/calculator_back
              ./mvnw clean spring-boot:run & 
@@ -52,6 +48,11 @@ jobs:
              npm install -g newman
              newman -v
              newman run src/test/java/com/example/calculator_back/integration/calculator.postman_collection.json
+      - name: Frontend end-to-end tests
+      - uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: 120
+          install-dependencies: true
       - run: |
              cd frontend/src
              python3 -m http.server 8000 &
