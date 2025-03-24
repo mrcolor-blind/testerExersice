@@ -1,5 +1,4 @@
-name: Run tests
-
+name: Run integration
 on:
   workflow_dispatch:
   push:
@@ -26,6 +25,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+
+      - uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: 120
+          install-dependencies: true
+          
       - name: Build with Maven
       - run: |
              cd backend/calculator_back
@@ -48,11 +53,8 @@ jobs:
              npm install -g newman
              newman -v
              newman run src/test/java/com/example/calculator_back/integration/calculator.postman_collection.json
+             
       - name: Frontend end-to-end tests
-      - uses: browser-actions/setup-chrome@v1
-        with:
-          chrome-version: 120
-          install-dependencies: true
       - run: |
              cd frontend/src
              python3 -m http.server 8000 &
