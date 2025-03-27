@@ -1,6 +1,7 @@
 package com.example.calculator_back.model;
 
-public record Calculator(Long result){
+public record Calculator(double result){
+
 
 }
 

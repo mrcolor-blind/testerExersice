@@ -13,13 +13,13 @@ public class CalculatorController {
 
     @CrossOrigin(origins = "http://localhost:8000")
     @GetMapping("/add")
-    public Calculator addNums(@RequestParam(value = "num1", defaultValue = "0") Long num1,@RequestParam(value = "num2", defaultValue = "0") Long num2){
+    public Calculator addNums(@RequestParam(value = "num1", defaultValue = "0") double num1,@RequestParam(value = "num2", defaultValue = "0") double num2){
         return new Calculator(num1 + num2);
     }
 
     @CrossOrigin(origins = "http://localhost:8000")
     @GetMapping("/sub")
-    public Calculator subNums(@RequestParam(value = "num1", defaultValue = "0") Long num1,@RequestParam(value = "num2", defaultValue = "0") Long num2){
+    public Calculator subNums(@RequestParam(value = "num1", defaultValue = "0") double num1,@RequestParam(value = "num2", defaultValue = "0") double num2){
         return new Calculator(num1 - num2);
     }
 
